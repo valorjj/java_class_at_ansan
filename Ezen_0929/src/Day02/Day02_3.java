@@ -40,6 +40,7 @@ public class Day02_3 {
 		int var2 = 200;
 		
 		int var3 = var1 > var2 ? var1 : var2;		
+		System.out.println("var3 = var1 > var2 ? var1 : var2" + " " + var3);
 	}
 
 }
