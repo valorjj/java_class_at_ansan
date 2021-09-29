@@ -15,6 +15,7 @@ stack 영역과 heap 영역
   <li>Method area, Class area, Code area, Static Area</li>
   <li>클래스 정보, 변수 정보, 메소드 정보, static 변수, Constant Pool</li>
   <li>JVM 이 동작해서 클래스가 로딩될 때 생성</li>
+  <br>
 <ul>Heap Area</ul>
   <li> <code>new</code> 키워드로 생성된 객체와 배열이 저장되는 영역</li>
   <li>Method Area에 로드된 클래스만 생성이 가능하다.</li>
@@ -23,3 +24,5 @@ stack 영역과 heap 영역
   <li>효율적인 GC를 위해 메모리 영역이 분리되어 있다.(Eden, Survivor1,2, Old)
   </li>
   <li>런타임시 할당된다</li>
+
+https://velog.io/@ditt/JavaJVM-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD
