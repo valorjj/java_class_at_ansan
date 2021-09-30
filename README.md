@@ -82,3 +82,49 @@ public class Main {
 
 
 하지만 Java 에서 ```Wrapper Class``` 에 해당하는 ```Integer``` ```Character``` ```Byte``` ```Boolean``` ```Long``` ```Double``` ```Float``` ```Short``` 클래스는 모드 *Immutable* 이다. 그래서 ```Heap``` 에 있는 같은 Object 를 레퍼런스 하고 있는 경우라도, 새로운 연산이 적용되는 순간 새로운 오브젝트가 ```Heap``` 에 _새롭게 할당된다._
+
+
+[[GIHUB 문제 해결 완전판](https://dogcowking.tistory.com/417)]
+
+* 상황 1 : commit 충돌로 인한 오류
+1. 다른 User 가 (remote)origin/master 에 수정 commit
+2. 이 commit 을 pull 하기 전에 내가 같은 브랜치에 수정
+3. pull 하지 않은 상태 에서 commit 하면 오류 발생함. (rejected non-fast-forward)
+
+* 상황 2 : 하지만 상대방의 commit이 내 commit 과 충돌한다면? 
+내 commit#1 
+상대 commit#2 & push (#1 과 conflict 되는... )
+내 commit #3 #2과 conflict 되는...)
+
+(이전에는 #2와 #3 이 conflict 되지 않는 상황이었음 )
+
+=> Result Conflicting 메시지 발생함..
+pull 하면 
+Cannot pull into a repository with state: MERGING 
+
+메시지 보이며 오류 남.
+
+- https://soye0n.tistory.com/128
+merge 하라고 하지만
+우클릭>Team 들어갔으나 Merge 는 disabled 되어있음.
+=> 하지만 충돌 표시(빨간색 양방향화살표) 되어있는 파일 개별로는 우클릭>merge Tool 사용 가능함.
+
+Synchronize 화면에서도 Merge tool 메뉴 표시됨.
+파일 내용 비교하며 수정 한 후 해당 파일 > 우클릭 > Add to index 하고
+merge 에 대한 commit 가능함. 
+
+Commit 메시지는 자동으로 생성
+
+Merge branch 'master' of http://192.168.0.120:7070/user04/gittest.git
+
+Conflicts:
+src/Test1.java
+
+Merge branch 'master' of http://192.168.0.120:7070/user04/gittest.git Conflicts: src/Test1.java 
+
+- 이 후 commit & push 하면 기존 충돌했던 commit 까지 모두 해결됨
+
+
+
+출처: https://dogcowking.tistory.com/417 [dogcowking]
+출처: https://dogcowking.tistory.com/417 [dogcowking]
