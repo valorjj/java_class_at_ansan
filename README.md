@@ -30,5 +30,5 @@ stack 영역과 heap 영역
 
 ## 09.30
 
-<script src="https://gist.github.com/valorjj/41b9e64ec8dc68bad9533046cb68a8f1.js"></script>
+https://gist.github.com/valorjj/41b9e64ec8dc68bad9533046cb68a8f1.js
   
