@@ -24,5 +24,11 @@ stack 영역과 heap 영역
   <li>효율적인 GC를 위해 메모리 영역이 분리되어 있다.(Eden, Survivor1,2, Old)
   </li>
   <li>런타임시 할당된다</li>
-
-https://velog.io/@ditt/JavaJVM-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD
+  
+<ul>Stack Area</ul>
+  <li> <code>지역변수</code>, <code>파라미터</code>, <code>리턴값</code> <code>연산</code>에 사용되는 임시값 등이 생성되는 영역</li>
+  <li> method 를 호출할 때마다 개별적으로 스택이 생성되며 종료시 영역에서 해제된다.</li>
+  <li> compile 시 할당된다. </li>
+  
+  
+<a href="https://velog.io/@ditt/JavaJVM-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD"></a>
