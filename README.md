@@ -3,7 +3,7 @@
 ## 2021.09.29
 
 
-stack 영역과 heap 영역
+### stack 영역과 heap 영역
 
 
 >Class Area == Method Area
@@ -58,5 +58,5 @@ public class Main {
 
 ```Primitive``` 타입을 제외하고 자주 쓰는 Set, List 는 ```Heap``` 영역에 저장된다. 
 
+[![text](https://i.imgur.com/3POGNfa.png)]
 
-  
