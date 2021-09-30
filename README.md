@@ -30,5 +30,4 @@ stack 영역과 heap 영역
   <li> method 를 호출할 때마다 개별적으로 스택이 생성되며 종료시 영역에서 해제된다.</li>
   <li> compile 시 할당된다. </li>
   
-  
-<a href="https://velog.io/@ditt/JavaJVM-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD"></a>
+<script src="https://gist.github.com/valorjj/41b9e64ec8dc68bad9533046cb68a8f1.js"></script>
