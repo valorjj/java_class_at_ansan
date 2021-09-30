@@ -7,6 +7,7 @@ public class Day03_9 {
 	public static void main(String[] args) {
 		// ATM 프로그램
 
+		// 대체 깃 저장이 왜 자꾸문제일까 
 		boolean run = true;
 
 		int balance = 1000000; // 예금액
