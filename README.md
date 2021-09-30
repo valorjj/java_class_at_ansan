@@ -60,3 +60,25 @@ public class Main {
 
 [![text](https://i.imgur.com/3POGNfa.png)]
 
+지금까지의 내용을 살펴보면 다음의 코드의 결과는 20으로 예측된다.
+```
+public class Main {
+    public static void main(String[] args) {
+        Integer a = 10;
+        System.out.println("Before: " + a);
+        changeInteger(a);
+        System.out.println("After: " + a);
+    }
+
+    public static void changeInteger(Integer param) {
+        param += 10;
+    }
+}
+```
+
+* 하지만 결과는 10 그대로이다! ``` Integer a = 10;``` 에서 10 은 ```Heap``` 영역에 할당되고, 10을 가리키는 reference var ```a``` 가 ```Stack``` 에 할당된다. 
+* 함수에 인자를 넘겨줄 때, parameter 는 copied value 를 넘겨받는다. 
+* ```changeInteger(a)``` 에 의해서, ```param``` 이라는 레퍼런스 변수가 스택에 할당되고, ```param``` 은 ```main()``` 에서 ```a``` 를 가리키던 곳을 똑같이 가리키고 있다. 
+
+
+하지만 Java 에서 ```Wrapper Class``` 에 해당하는 ```Integer``` ```Character``` ```Byte``` ```Boolean``` ```Long``` ```Double``` ```Float``` ```Short``` 클래스는 모드 *Immutable* 이다. 그래서 ```Heap``` 에 있는 같은 Object 를 레퍼런스 하고 있는 경우라도, 새로운 연산이 적용되는 순간 새로운 오브젝트가 ```Heap``` 에 _새롭게 할당된다._
