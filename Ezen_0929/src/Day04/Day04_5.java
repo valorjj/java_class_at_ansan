@@ -1,8 +1,10 @@
 package Day04;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Day04_5 {
@@ -10,7 +12,9 @@ public class Day04_5 {
 		// 변수 이름이 첫번째 메모리 주소를 가르킨다.
 		// 학생 점수관리 프로그램
 		Scanner sc = new Scanner(System.in);
-		int[] studentList = null;
+		
+		List<Integer> stList = new ArrayList<Integer>();
+		int[] studentList1 = null;
 		float sum = 0;
 		int tmp = 0;
 		HashMap<Integer, Integer> hm = new HashMap<>();
@@ -21,32 +25,35 @@ public class Day04_5 {
 			if (selectedNumber == 1) {
 				System.out.print("학생 수를 입력하세요 : ");
 				int studentNumber = sc.nextInt();
-				studentList = new int[studentNumber];
+				studentList1 = new int[studentNumber];
 			}
 			if (selectedNumber == 2) {
-				for (int i = 0; i < studentList.length; i++) {
-					System.out.print(i + "번째 학생의 점수를 입력하세요 : ");
-					studentList[i] = sc.nextInt();
-					sum += studentList[i];
+				for (int i = 0; i < studentList1.length; i++) {
+					System.out.print((i+1) + "번째 학생의 점수를 입력하세요 : ");
+					studentList1[i] = sc.nextInt();
+					System.out.println("ArrayList 에 저장합니다. ");
+					stList.add(sc.nextInt());
+					sum += studentList1[i];
 				}
 			}
 			if (selectedNumber == 3) {
 				// 평균 구하고, 내림차순으로 정렬
-				System.out.println("평균은 " + (float) (sum / studentList.length));
-//				for (int i = 0; i < studentList.length - 1; i++) {
-//					for (int j = i + 1; j < studentList.length; j++) {
-//						if (studentList[i] < studentList[j]) {
-//							tmp = studentList[i];
-//							studentList[i] = studentList[j];
-//							studentList[j] = tmp;
-//						}
-//					}
-//				}
+				System.out.println("평균은 " + (float) (sum / studentList1.length));
+				for (int i = 0; i < studentList1.length - 1; i++) {
+					for (int j = i + 1; j < studentList1.length; j++) {
+						if (studentList1[i] < studentList1[j]) {
+							tmp = studentList1[i];
+							studentList1[i] = studentList1[j];
+							studentList1[j] = tmp;
+						}
+					}
+				}
 				
-				Arrays.sort(studentList);
+				Arrays.sort(studentList1); // 오름차순 
 				// Collection 쓰려면 ArrayList 여야한다. 
+				Collections.reverse(stList); // 컬렉션은 객체만 가능하다. 기본 자료형은 불가능 
 
-				for (int s : studentList) {
+				for (int s : studentList1) {
 					System.out.println(s);
 				}
 
