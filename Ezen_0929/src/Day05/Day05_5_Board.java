@@ -2,40 +2,18 @@ package Day05;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Day05_4_Board {
+public class Day05_5_Board {
+	
+	// 1. 서로 다른 자료형을 동일한 배열에 저장할 수 없음
+		// 서로 다른 자료형을 하나의 자료형으로 묶기 => '클래스' 
+	
+	// 2. 배열선언과 동시에 메모리 할당 => 프로그램 실행시 메모리 변경 '불가' 
 
 	public static void main(String[] args) {
 
-		// 문제1: 게시판 만들기
-		// 2차원 배열 사용 // 게시물 번호는 인덱스 번호
-		// 1. 게시판 [ 제목, 내용, 작성자, 작성날짜, 조회수 ]
-		// 예시 메뉴
-
-		// 2. 해당 게시물 번호 선택에서 상세페이지로 이동 시 조회수 +1
-
-		// 2. 메인 메뉴 열기
-
-		// [게시판]
-
-		// 순번 | 제목 | 작성자 | 작성일 | 조회수
-		// 1 | 안녕 | ㄴㄴㄴ | 오늘 | 3
-
-		// 선택 : 1. 글쓰기 2.글상세페이지
-
-		// [글쓰기 했을 때]
-		// 1. 제목, 내용, 작성자, 작성일 입력받아서 배열에 저장한다.
-		// [글상세페이지]
-		// 1. 상세페이지를 볼 게시물 번호 선택(index 순서대로)
-		// 2. 선택한 게시물의 상세페이지 출력
-		// 2. 상세페이지 예시
-		// >> 제목 : 안녕
-		// >> 작성자 : ㄴㄴㄴ 작성일 : 2021-10-05 : 조회수 : 3
-		// >> 내용 : 안녕하세요
-		// >> 선택 : 1. 뒤로가기
 
 		// DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -73,8 +51,7 @@ public class Day05_4_Board {
 
 				}
 
-				System.out.print("1번. 글쓰기 || 2번. 글상세페이지 || 3번. 종료 >>> ");
-
+				System.out.print("1번. 글쓰기 || 2번. 글상세페이지 || 3번. 게시물삭제 4. 프로그램 종료 >>> ");
 				int choice = sc.nextInt();
 
 				if (choice == 1 || choice == 2) {
@@ -129,6 +106,12 @@ public class Day05_4_Board {
 						}
 						break;
 					case 3:
+						System.out.println("몇번째 게시물을 삭제하시겠습니까 ? ");
+						// 배열만으로 게시판을 작성하기에는 많은 문제가 생긴다.
+						// 서로 다른 자료형을 담는다거나
+						// 게시물을 지울때 어떻게 할래 ? 1번 지우면 나머지 게시판 글들이 한칸씩 당겨져야한다.
+						// ArrayList 를 사용해서 
+					case 4:
 						System.out.println("프로그램 종료 "); // 프로그램 완전 종료
 						flag2 = false;
 						flag1 = false;
