@@ -20,6 +20,8 @@ public class Ezen_Homework_1 {
 
 		Scanner sc = new Scanner(System.in);
 
+		String userID = "";
+
 		boolean flag1 = true;
 
 		while (flag1) { // 시작 메뉴를 출력할 첫번째 while loop
@@ -37,20 +39,27 @@ public class Ezen_Homework_1 {
 					case 2: // [회원가입] 을 선택했을 경우
 						System.out.println("회원가입 화면입니다. ");
 						System.out.println("아이디와 패스워드는 공백없는 영어와 숫자로만 입력해주세요. ");
-						System.out.print("아이디를 입력하세요. : ");
-						String userID = sc.next();
-						st = new StringTokenizer(userID);
-						while (st.hasMoreTokens()) {
-							if (st.nextToken().charAt(0) >= 'A' && st.nextToken().charAt(0) <= 'z'
-									&& st.nextToken().charAt(0) >= 30 && st.nextToken().charAt(0) <= 39) {
-								// 영어나 숫자일 때만 통과
-							} else {
-								// 영어 혹은 숫자가 아닌 경우
-								System.out.println("아이디 값이 잘못 입력되었습니다. ");
-								flag2 = false;
-								break;
+
+						boolean flag3 = true;
+
+						while (flag3) {
+							System.out.print("아이디를 입력하세요. : ");
+							userID = sc.next();
+							userID = userID.toUpperCase();
+
+							for (int i = 0; i < userID.length(); i++) {
+								char ch = userID.charAt(i);
+								if ((ch < 65 || ch > 90) && (ch < 48 && ch > 57)) {
+									System.out.println("잘못입력하셨습니다. ");
+									// 아이디에 영문 / 숫자가 아닌 값이 입력되면 다시 입력화면으로 돌아가야한다.
+									flag3 = false;
+									break;
+								} 
 							}
 						}
+
+						// 아이디에는 영문, 숫자만 입력받게 한다.
+
 						if (userInfo.containsKey(userID)) { // 아이디값이 중복되었을 경우
 							System.out.println("중복되는 아이디입니다. 다른 값을 입력해주세요. ");
 							break; // 회원가입 화면으로 돌아가기
