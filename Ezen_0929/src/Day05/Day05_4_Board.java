@@ -37,8 +37,9 @@ public class Day05_4_Board {
 		// >> 내용 : 안녕하세요
 		// >> 선택 : 1. 뒤로가기
 
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		// DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 
 		Scanner sc = new Scanner(System.in);
@@ -51,6 +52,9 @@ public class Day05_4_Board {
 
 		boolean flag1 = true;
 		int idx = 1; // 게시글 인덱스는 1번부터 시작합니다.
+		System.out.println("****************************************************************");
+		System.out.println("                           [[알림]] 숫자만 입력하세요.    ");
+		System.out.println("****************************************************************");
 
 		while (flag1) {
 
@@ -68,6 +72,7 @@ public class Day05_4_Board {
 					}
 
 				}
+
 				System.out.print("1번. 글쓰기 || 2번. 글상세페이지 || 3번. 종료 >>> ");
 
 				int choice = sc.nextInt();
@@ -84,14 +89,14 @@ public class Day05_4_Board {
 						sc.nextLine();
 						System.out.print("내용 입력 >>>");
 						String userlog = sc.nextLine(); // 게시물 내용 입력
-						String dateToStr = dateFormat.format(date); // 날짜 저장
+						String currDate = dateFormat.format(date); // 날짜 저장
 
 						// 작성자, 제목, 내용, 조회수, 날짜, 인덱스
 						userInput[0] = userName; // 작성자
 						userInput[1] = title; // 제목
 						userInput[2] = userlog; // 내용
-						userInput[3] = "1"; // 조회수는 1로 초기화 
-						userInput[4] = dateToStr; // 현재 날짜
+						userInput[3] = "1"; // 조회수는 1로 초기화
+						userInput[4] = currDate; // 현재 날짜
 						userInput[5] = Integer.toString(idx); // 순번 (index)
 
 						for (int j = 0; j < 6; j++) {
@@ -113,11 +118,11 @@ public class Day05_4_Board {
 									System.out.println("작성자 : " + userInput[0]);
 									System.out.println("내용 : " + userInput[2]);
 									System.out.println("작성일 : " + userInput[4]);
-
+									// int + "" => String 으로 바뀐다. 
 									int viewCount = Integer.parseInt(board[i][3]);
-									System.out.println(viewCount);
-									viewCount++;
-									board[i][3] = Integer.toString(viewCount);
+									
+									// board[i][3] = Integer.toString(++viewCount);
+									board[i][3] = ++viewCount + "";
 									break;
 								}
 							}
@@ -132,7 +137,7 @@ public class Day05_4_Board {
 						System.out.println("잘못된 접근입니다. 메인 페이지 출력. ");
 						flag2 = false;
 					}
-					
+
 				} else {
 					System.out.println("잘못된 접근입니다. 메인 페이지 출력. ");
 					flag2 = false;
