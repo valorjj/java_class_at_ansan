@@ -122,6 +122,11 @@ public class BankApplication {
 			System.out.println("계좌가 존재하지 않습니다. ");
 			return; // 현재 메소드 강제 종료 
 		}
+		
+		if( account.getBalance() < balance) {
+			System.out.println("예금액이 요청하신 금액보다 적습니다. ");
+			return;
+		}
 		account.setBalance(account.getBalance() - balance);
 	}
 
