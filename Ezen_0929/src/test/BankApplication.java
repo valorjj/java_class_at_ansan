@@ -147,7 +147,10 @@ public class BankApplication {
 			int password = scanner.nextInt();
 			if (account.getPassword() == password) {
 				System.out.println("비밀번호 일치. 계좌정보를 삭제합니다. ");
-				for (int i = 0; i < accountList.length; i++) {
+				for (int i = 0; i < accountList.length; i++) { 
+					// ArrayList 를 사용하지 않기 때문에 직접 for 루프를 돌면서
+					// account 인스턴스의 위치를 특정하고 null 값으로 초기화시킨다. 
+					
 					if (accountList[i] == account) {
 						accountList[i] = null;
 					}
