@@ -127,4 +127,49 @@ Merge branch 'master' of http://192.168.0.120:7070/user04/gittest.git Conflicts:
 
 
 출처: https://dogcowking.tistory.com/417 [dogcowking]
-출처: https://dogcowking.tistory.com/417 [dogcowking]
+
+## 2021.10.06 
+
+### Class VS Object
+
+> 클래스는 ```설계도```, 객체는 설계도로 구현한 모든 대상 
+
+
+
+### Object vs Instance
+
+> 클래스 타입으로 선언됐을 때 ```객체``` 라고 부르고, 그 객체가 메모리에 할당되어 실제 사용될 떄 ```인스턴스``` 라고 부른다.
+
+### Instance 란 무엇인가 
+
+- 설계도를 바탕으로 소프트웨어 세계게 구현된 구체적인 실체
+  - 실체화된 인스턴스는 메모리에 할당된다. 
+- 특징
+  - 인스턴스는 객체에 포함된다고 볼 수 있다. 
+  - oop 관점에서 객체가 메모리에 할당되어 실제 사용될 때, ```인스턴스``` 라고 ㅂ른다.
+  - 추상적인 개념과 구체적인 객체 사이의 관계에 초점을 맞출 경우에 사용한다.
+    * 객체는 클래스의 인스턴스이다. 
+    * 객체간의 링크는 클래스간의 연관 관계의 인스턴스이다.
+    * 실행 프로세스는 프로그램의 인스턴스이다.
+  - 즉, 인스턴스라는 용어는 반드시 클래스, 객체 사이의 관계로 한정지어서 생각할 필요는 없다.
+  - 인스턴스는 어떤 원본(추상적인 개념)으로부터 ```생성된 복제본```을 의미한다. 
+
+
+```
+/* 클래스 */
+public class Animal {
+  ...
+}
+/* 객체와 인스턴스 */
+public class Main {
+  public static void main(String[] args) {
+    Animal cat, dog; // '객체'
+
+    // 인스턴스화
+    cat = new Animal(); // cat은 Animal 클래스의 '인스턴스'(객체를 메모리에 할당)
+    dog = new Animal(); // dog은 Animal 클래스의 '인스턴스'(객체를 메모리에 할당)
+  }
+}
+https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html
+
+```
