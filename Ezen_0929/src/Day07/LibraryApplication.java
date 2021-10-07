@@ -19,7 +19,6 @@ public class LibraryApplication {
 	public static void main(String[] args) {
 
 		System.out.println("도서 대여 프로그램 입니다. ");
-
 		main_menu();
 
 	}
@@ -119,7 +118,7 @@ public class LibraryApplication {
 			}
 			if (userSelect == 2) {
 				System.out.println("도서 반납 ");
-				book.book_return();
+				book.book_return(loginId);
 			}
 			if (userSelect == 3) {
 				System.out.println("대출 도서 목록  ");

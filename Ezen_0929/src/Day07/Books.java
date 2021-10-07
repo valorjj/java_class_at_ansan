@@ -19,19 +19,20 @@ public class Books {
 	private String b_ISBN;
 	private String b_name;
 	private boolean b_rental;
-	private String b_Id;
+	private String id;
 
 	public Books() {
 
 	}
 
-	public Books(String b_ISBN, String b_name, boolean b_rental, String b_Id) {
+	public Books(String b_ISBN, String b_name, boolean b_rental, String id) {
 		super();
 		this.b_ISBN = b_ISBN;
 		this.b_name = b_name;
 		this.b_rental = b_rental;
-		this.b_Id = b_Id;
+		this.id = id;
 	}
+
 
 	public boolean book_add() {
 		// 1. 입력 받기
@@ -77,7 +78,7 @@ public class Books {
 						book.setB_rental(false);
 						// String id = book.getB_Id();
 						// 2. 대여성공 시 대여회원에 현재 로그인된 아이디 대입
-						book.setB_Id(loginId);
+						book.setId(loginId);
 
 						return true;
 					} else {
@@ -98,7 +99,7 @@ public class Books {
 	// 5. 도서 목록 출력 메소드
 	public void book_list() {
 		System.out.println("------ 도서 목록 출력 ------ ");
-		System.out.println("도서코드"+"\t"+"도서명"+"\t"+"대여여부"+"\t"+"대여회원");
+		System.out.println("도서코드" + "\t" + "도서명" + "\t" + "대여여부" + "\t" + "대여회원");
 
 		for (int i = 0; i < LibraryApplication.books.length; i++) {
 			if (LibraryApplication.books[i] == null)
@@ -106,42 +107,42 @@ public class Books {
 
 			Books book = LibraryApplication.books[i];
 			System.out
-					.println(book.b_ISBN + "\t" + book.getB_name() + "\t" + book.getB_rental() + "\t" + book.getB_Id());
+					.println(book.b_ISBN + "\t" + book.getB_name() + "\t" + book.getB_rental() + "\t" + book.getId());
 		}
 
 	}
 
 	// 6. 도서 반납 메소드
-	public boolean book_return() {
+	public boolean book_return(String loginId) {
 		System.out.println("도서반납 화면입니다. ");
 		System.out.print("도서 코드(ISBN) : ");
 		String b_ISBN = LibraryApplication.scanner.next();
-		boolean check = bookCheck(b_ISBN);
-		if (check) {
-			for (int i = 0; i < LibraryApplication.books.length; i++) {
-				Books book = LibraryApplication.books[i]; // 아랫줄에 이어질 코드 간소화를 위해서 새로운 book 인스턴스를 생성해서 저장한다.
-				if (book != null && book.getB_ISBN().equals(b_ISBN)) {
-					if (!book.getB_rental()) {
-						// false 이면 현재 대여중인 상태
-						System.out.println("해당 도서를 반납합니다.  ");
-						// 1. 반납 성공 시 true 값으로 변경한다.
+
+		// 1. 대여중인 책들 찾기
+
+		// 2. 입력받은 도서 코드
+
+		// 3. 로그인된 회원 == 대여회원 => 반납 성공
+
+		for (int i = 0; i < LibraryApplication.books.length; i++) {
+			Books book = LibraryApplication.books[i];
+			
+			if (book != null && !book.getB_rental()) { // 현재 해당 도서 대여 중
+				if(book.getB_ISBN().equals(b_ISBN)) {
+					if(book.getId().equals(loginId)) {
+						
+						System.out.println("도서가 반납되었습니다. ");
+						// 1. 반납 성공 시 대여회원을 null 로 교체
+						book.setId(null);
+						// 2. 반납 성공 시 대여여부 true 로 교체 
 						book.setB_rental(true);
-
-						// 2. 반납 시 정보 초기화
-						book.setB_Id(null);
-						book.setB_name(null);
-
+						
 						return true;
-
-					} 
+					}
 				}
 			}
-			
-		} else {
-			System.out.println("해당 도서코드가 존재하지 않습니다. ");
-			return false;
-
 		}
+		System.out.println("도서코드가 다르거나 대여중인 도서가 아닙니다. ");
 		return true;
 	}
 
@@ -179,12 +180,13 @@ public class Books {
 		this.b_rental = b_rental;
 	}
 
-	public String getB_Id() {
-		return b_Id;
+	public String getId() {
+		return id;
 	}
 
-	public void setB_Id(String b_Id) {
-		this.b_Id = b_Id;
+	public void setId(String id) {
+		this.id = id;
 	}
 
+	
 }
