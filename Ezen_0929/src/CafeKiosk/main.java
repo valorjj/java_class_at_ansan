@@ -1,10 +1,13 @@
 package CafeKiosk;
 
-import Day09.ATM;
+import java.util.ArrayList;
 
-public class main {
+public class main implements Kiosk {
 
 	public static void main(String[] args) {
+
+		ArrayList<coffee> item_list1;
+		ArrayList<dessert> item_list2;
 
 		// admin
 		// customer
@@ -29,7 +32,22 @@ public class main {
 
 	}
 
+	@Override
+	public void dataInput() {
+		System.out.println(" [입력] ");
+		
+	}
 
-	
-	
+	@Override
+	public void data수정() {
+		System.out.println(" [수정] ");
+		
+	}
+
+	@Override
+	public void dataDelete() {
+		System.out.println(" [삭제] ");
+		
+	}
+
 }

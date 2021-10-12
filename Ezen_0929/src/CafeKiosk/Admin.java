@@ -1,7 +1,7 @@
 package CafeKiosk;
 
 
-public class Admin implements Kiosk {
+public class Admin extends main {
 	// 키오스크 메소드 오버라이딩
 
 	String[] admin_menu = new String[100];
