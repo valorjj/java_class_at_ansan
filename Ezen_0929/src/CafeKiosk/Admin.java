@@ -1,7 +1,7 @@
 package CafeKiosk;
 
 
-public class Admin extends main {
+public class Admin extends Main {
 	// 키오스크 메소드 오버라이딩
 
 	String[] admin_menu = new String[100];

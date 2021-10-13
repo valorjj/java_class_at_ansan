@@ -2,7 +2,7 @@ package CafeKiosk;
 
 import java.util.ArrayList;
 
-public class main implements Kiosk {
+public class Main implements Kiosk {
 
 	public static void main(String[] args) {
 

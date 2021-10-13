@@ -1,6 +1,6 @@
 package CafeKiosk;
 
-public class Customer extends main {
+public class Customer extends Main {
 
 	String[] customer_menu = new String[100];
 
