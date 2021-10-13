@@ -20,7 +20,11 @@ public class signUp extends logInClass {
 	public void user_input() {
 		System.out.println("회원가입 화면입니다. ");
 
-		for (int i = 0; i < 3; i++) {
+		boolean run = true;
+		
+		while (run) {
+
+			int i = 0;
 
 			try {
 
@@ -39,18 +43,20 @@ public class signUp extends logInClass {
 
 				member = new Member(id, pw, name);
 
-				memberList[i] = member;
+				memberList[i++] = member;
 
-				memberList[i].setId(id);
-				memberList[i].setPw(pw);
-				memberList[i].setName(name);
+				memberList[i++].setId(id);
+				memberList[i++].setPw(pw);
+				memberList[i++].setName(name);
+
+				// i가 지정한 3을 넘어가면 예외가 발생한다고 생각하고 예외처리 해야함 -- 수정바람 
 
 				break;
 
 			} catch (Exception e) {
 				System.out.println("예외발생");
 				System.out.println(e);
-			}
+			} 
 
 		}
 
