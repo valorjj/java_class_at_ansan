@@ -12,7 +12,6 @@ public class signIn extends logInClass {
 	public void signIn() {
 
 		signIn s = new signIn();
-
 		s.user_input();
 
 	}
@@ -27,16 +26,16 @@ public class signIn extends logInClass {
 				System.out.print("아이디 입력 : ");
 				String id = scanner.next();
 
-				if (c.signUpList_ID[i] != null && id.equals(c.signUpList_ID[i])) {
+				if (memberList[i] != null && memberList[i].getName().equals(id)) {
 					System.out.print("패스워드 입력 : ");
 					String pw = scanner.next();
 
-					if (c.signUpList_Password[i] != null && pw.equals(c.signUpList_Password[i])) {
+					if (memberList[i] != null && memberList[i].getPw().equals(pw)) {
 						System.out.println("로그인 완료 ");
 					}
 					break;
 				} else {
-					System.out.println("아이디가 없어요 ");
+					System.out.println("아이디가 존재하지 않습니다. ");
 				}
 
 			} catch (Exception e) {

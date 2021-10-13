@@ -24,17 +24,35 @@ public class signUp extends logInClass {
 
 			try {
 
+				Member member = null;
 				System.out.print("아이디 입력 : ");
-				String id = scanner.next();
-
-				c.signUpList_ID[i] = id;
+				String id = scanner.nextLine();
+				id = id.replaceAll("\\s+", "");
 
 				System.out.print("패스워드 입력 : ");
-				String pw = scanner.next();
+				String pw = scanner.nextLine();
+				pw = pw.replaceAll("\\s+", "");
 
-				c.signUpList_Password[i] = pw;
+				System.out.print("이름 입력 : ");
+				String name = scanner.nextLine();
+				name = name.replaceAll("\\s+", "");
+
+				
+
+				member = new Member(id, pw, name);
+				
+				
+
+				memberList[i] = member;
+				
+				memberList[i].setId(id);
+				memberList[i].setPw(pw);
+				memberList[i].setName(name);
+				
+				break;
 
 			} catch (Exception e) {
+				System.out.println("예외발생");
 				System.out.println(e);
 			}
 
