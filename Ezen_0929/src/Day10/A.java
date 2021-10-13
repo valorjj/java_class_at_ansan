@@ -34,7 +34,7 @@ public class A {
 		int field1;
 		static int field2;
 
-		void method() {
+		void method1() {
 		}
 
 		static void method2() {
