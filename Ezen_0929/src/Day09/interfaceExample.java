@@ -1,7 +1,7 @@
 package Day09;
 
 
-public class main {
+public class interfaceExample {
 
 	// 자식이 부모가 있는 자리로 가서 형변환 가능
 	// 부모가 자식이 있는 자리로 가서 형변환은 불가능 !
