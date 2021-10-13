@@ -57,8 +57,8 @@ public class A {
 			}
 
 		}
-		
-		// 메소드 내 지역변수 
+
+		// 메소드 내 지역변수
 		D d = new D();
 		d.field1 = 3;
 		d.method1();
