@@ -37,18 +37,14 @@ public class signUp extends logInClass {
 				String name = scanner.nextLine();
 				name = name.replaceAll("\\s+", "");
 
-				
-
 				member = new Member(id, pw, name);
-				
-				
 
 				memberList[i] = member;
-				
+
 				memberList[i].setId(id);
 				memberList[i].setPw(pw);
 				memberList[i].setName(name);
-				
+
 				break;
 
 			} catch (Exception e) {
