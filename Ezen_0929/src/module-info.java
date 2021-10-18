@@ -1,3 +1,1 @@
-module Ezen_0929 {
-	requires java.sql;
-}
+// module Ezen_0929 {...} 이게 오류나서 일단 지웠습니다. 
