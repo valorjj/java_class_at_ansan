@@ -1,6 +1,7 @@
 package Day12;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Day12_4 {
 
@@ -11,68 +12,88 @@ public class Day12_4 {
 
 	public static void main(String[] args) {
 
-		int[] carlist = new int[10];
-
-		int[] carlist_even = new int[10];
-		int[] carlist_odd = new int[10];
+		//
+		String[] carlist = new String[100];
+		String[] carlist_even = new String[100];
+		String[] carlist_odd = new String[100];
 
 		Random random = new Random();
 
-		
-		// 1. 그냥 하나씩 다 때려박기 
-		
-		for (int i = 0; i < 10; i++) {
-			int a1 = random.nextInt(10);
-			int a2 = random.nextInt(10);
-			int a3 = random.nextInt(10);
-			int a4 = random.nextInt(10);
-			int a = a1 * 1000 + a2 * 100 + a3 * 10 + a4;
-			carlist[i] = a;
-			System.out.println(a);
-		}
+		Scanner sc = new Scanner(System.in);
 
-		// 2. 
-		
-		int i = 0;
-		int j = 0;
-		for (int s : carlist) {
-			if (s % 2 == 0) {
-				System.out.println("짝수배열 차량");
-				carlist_even[i++] = s;
+		int count = 0;
 
-			} else {
-				System.out.println("홀수배열 차량");
-				carlist_odd[j++] = s;
+		while (count++ < 100) {
+
+			System.out.println("1. 차량 번호 생성 | 2. 종료 ");
+
+			int choice = sc.nextInt();
+
+			if (choice == 1) {
+
+				int rnum = random.nextInt(10000); // 0 - 9999 까지의 랜덤 변수
+				// 4자릿수 문자로 변환
+				String strnum = String.format("%04d", rnum);
+				// String.format (형식, 데이터) : 문자열 형식 메소드
+				// 형식 : %d -> 형식대상의 데이터가 정수
+				// %4d : 4자리수
+				// %04d : 비어있는 자릿수는 0으로 메꿈
+
+				for (int i = 0; i < carlist.length; i++) {
+					if (carlist[i] == null) {
+						carlist[i] = strnum;
+
+						int typeChange = Integer.parseInt(carlist[i]);
+						if (typeChange % 2 == 0) {
+							for (int j = 0; j < carlist_even.length; j++) {
+								if (carlist_even[j] == null) {
+									carlist_even[j] = strnum;
+									break;
+								}
+							}
+
+						} else {
+
+							for (int j = 0; j < carlist_odd.length; j++) {
+								if (carlist_odd[j] == null) {
+									carlist_odd[j] = strnum;
+									break;
+								}
+							}
+						}
+						break;
+					}
+				}
+
+				System.out.println("********************* 현재 주차중인 차량 ***********************");
+				for (String s : carlist) {
+					if (s != null) {
+						System.out.println(s);
+					}
+				}
+
+				System.out.println("********************* 짝수 번호 차량 ****************************");
+
+				for (String s : carlist_even) {
+					if (s != null) {
+						System.out.println(s);
+					}
+				}
+
+				System.out.println("********************* 홀수 번호 차량 ****************************");
+				for (String s : carlist_odd) {
+					if (s != null) {
+						System.out.println(s);
+					}
+				}
+
+			}
+			if (choice == 2) {
+				System.out.println("종료 ");
+				break;
 			}
 
 		}
-
-		int count_even = 0;
-
-		for (int k : carlist_even) {
-			if (k != 0) {
-				System.out.println("뒷자리 짝수 ");
-				System.out.println(k);
-				count_even++;
-			}
-
-		}
-
-		System.out.println("짝수차량 총 " + count_even + " 개");
-
-		int count_odd = 0;
-		for (int w : carlist_odd) {
-			if (w != 0) {
-				System.out.println("뒷자리 홀수 ");
-				System.out.println(w);
-				count_odd++;
-			}
-
-		}
-
-		System.out.println("홀수차량 총 " + count_odd + " 개 ");
-		
-		
 
 	}
 
