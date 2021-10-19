@@ -123,6 +123,26 @@ public class Day14_member_list {
 								System.out.println("수정할 이름 : ");
 								String newName = scanner.next();
 								temp.setName(newName);
+
+								try {
+									FileOutputStream fos = new FileOutputStream(
+											"C:/Users/505/git/java_ezen/Ezen_0929/src/Day14/memberList.txt");
+									// 리스트내 모든 회원 저장
+
+									String outString = "";
+									for (User tmp : users) {
+
+										String outStr = tmp.getId() + "," + tmp.getPassword() + "," + tmp.getName()
+												+ "\n";
+										outString += outStr;
+
+									}
+									fos.write(outString.getBytes());
+
+								} catch (Exception e) {
+									System.out.println("[에러발생] " + e);
+								}
+
 							} else if (ch2 == 3) {
 								System.out.println("[회원 탈퇴]");
 								System.out.println("탈퇴할 아이디 : ");
