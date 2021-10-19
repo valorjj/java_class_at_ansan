@@ -67,6 +67,7 @@ public class Main {
 				System.out.print((course.getStudents()[i]) + " | ");
 			}
 		}
+
 		System.out.println();
 		System.out.println("---------------------------------------------------");
 	}
