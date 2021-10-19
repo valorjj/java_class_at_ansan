@@ -59,9 +59,6 @@ public class Main {
 
 	public static void registerCourse(Course<?> course) {
 
-		// System.out.println(course.getName() + " 수강생 : " +
-		// Arrays.toString(course.getStudents()));
-
 		System.out.println(course.getName() + " [수강생] : ");
 		System.out.println("---------------------------------------------------");
 
