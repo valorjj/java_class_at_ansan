@@ -9,7 +9,7 @@ public class Person {
 	// 회원의 나이 
 	private int age;
 
-	// 생성자를 만드는데, name, age 정보를 입력받아서 필드에 저장한 상태로 객체 생성 
+	// 생성자 
 	public Person(String name, int age) {
 		this.name = name;
 		this.age = age;
