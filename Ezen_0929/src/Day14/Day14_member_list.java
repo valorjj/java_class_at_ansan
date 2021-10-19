@@ -106,12 +106,44 @@ public class Day14_member_list {
 					if (temp.getId().equals(id) && temp.getPassword().equals(password)) {
 						System.out.println("로그인 성공");
 						loginCheck = false;
+
+						//// 로그인 성공시 ////
+
+						while (true) {
+
+							System.out.print("1. 회원정보 | 2. 회원수정 | 3. 회원탈퇴 | 4. 로그아웃 : ");
+							int ch2 = scanner.nextInt();
+
+							if (ch2 == 1) {
+								System.out.println("[회원 정보]");
+								System.out.println("[아이디] : " + temp.getId());
+								System.out.println("[이름] : " + temp.getName());
+							} else if (ch2 == 2) {
+								System.out.println("[회원 이름 수정]");
+								System.out.println("수정할 이름 : ");
+								String newName = scanner.next();
+								temp.setName(newName);
+							} else if (ch2 == 3) {
+								System.out.println("[회원 탈퇴]");
+								System.out.println("탈퇴할 아이디 : ");
+								users.remove(temp);
+
+								break;
+							} else if (ch2 == 4) {
+								System.out.println("[로그 아웃]");
+								break;
+							} else {
+								System.out.println("[에러 발생]");
+							}
+
+						}
+
 						break;
 					}
 				}
 
 				if (loginCheck) {
-					System.out.println("일치하는 회원 정보가 없습니다. ");
+					System.out.println("[에러] 일치하는 회원 정보가 없습니다. ");
 				}
 			}
 
