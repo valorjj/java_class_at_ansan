@@ -67,7 +67,7 @@ public class Main {
 
 		for (int i = 0; i < course.getStudents().length; i++) {
 			if (course.getStudents()[i] != null) {
-				System.out.print((course.getStudents()[i].toString()) + " | ");
+				System.out.print((course.getStudents()[i]) + " | ");
 			}
 		}
 		System.out.println();
