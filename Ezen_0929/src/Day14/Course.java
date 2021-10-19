@@ -12,6 +12,9 @@ public class Course<T> {
 		this.name = name;
 		students = (T[]) new Object[capacity];
 	}
+	
+	public Course() {
+	}
 
 	public String getName() {
 		return name;
