@@ -1,17 +1,19 @@
 package Generic_Example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
 	static ArrayList<Course> courseCollection = new ArrayList<>();
+	
 	static Scanner sc = new Scanner(System.in);
-
+	
 	public static void main(String[] args) {
 
 		// Course 객체 생성 -> 이름과 배열크기를 받아서 인스턴스 생성
+		
+		
 		Course<Person> generalCourse = new Course<>("[일반 과정]", 10);
 		Course<Person> childCourse = new Course<>("[유아 과정]", 10);
 		Course<Person> teenCourse = new Course<>("[청소년 과정]", 10);
