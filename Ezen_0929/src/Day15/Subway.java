@@ -8,9 +8,9 @@ public class Subway {
 	String train_code;
 	String train_status;
 
-	public Subway(String train_code) {
-		this.train_code = train_code;
-	}
+//	public Subway(String train_code) {
+//		this.train_code = train_code;
+//	}
 
 	public Subway(String train_code, String train_status) {
 		this.train_code = train_code;

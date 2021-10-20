@@ -9,9 +9,9 @@ public class Station_Time extends Thread {
 		stop = sw;
 
 		if (stop) {
-			System.out.println("[열차 이동 가능]");
+			System.out.println(" 현재 상황 : [열차 이동 가능]");
 		} else {
-			System.out.println("[열차 통행 중지]");
+			System.out.println(" 현재 상황 : [열차 통행 중지]");
 		}
 
 	}

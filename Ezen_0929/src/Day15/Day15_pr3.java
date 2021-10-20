@@ -55,11 +55,11 @@ public class Day15_pr3 {
 				if (ch == 1) {
 					// 1. 종점역에 열차가 있다면, 종점에서 용산으로 (1에서 2로) 이동시킨다.
 					if (!종점역.station.isEmpty()) {
-						// 1. 상태 출력 
+						// 1. 상태 출력
 						if (sw[ch - 1] == true) {
 							time_thread.stop_train(sw[ch - 1]);
 							status_thread.status_train(종점역);
-							
+
 							time_thread.run();
 							용산역.station.offer(종점역.station.poll());
 						} else {
@@ -83,6 +83,7 @@ public class Day15_pr3 {
 					if (!용산역.station.isEmpty()) {
 						if (sw[ch - 1] == true) {
 							time_thread.stop_train(sw[ch - 1]);
+							status_thread.status_train(용산역);
 							time_thread.run();
 
 							서울역.station.offer(용산역.station.poll());
@@ -107,6 +108,7 @@ public class Day15_pr3 {
 					if (!서울역.station.isEmpty()) {
 						if (sw[ch - 1] = true) {
 							time_thread.stop_train(sw[ch - 1]);
+							status_thread.status_train(서울역);
 							time_thread.run();
 
 							구로역.station.offer(서울역.station.poll());
@@ -133,6 +135,8 @@ public class Day15_pr3 {
 					if (!구로역.station.isEmpty()) {
 						if (sw[ch - 1] = true) {
 							time_thread.stop_train(sw[ch - 1]);
+							status_thread.status_train(구로역);
+
 							time_thread.run();
 
 							종점역.station.offer(구로역.station.poll());
