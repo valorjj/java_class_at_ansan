@@ -25,10 +25,10 @@ public class Day15_pr3 {
 		Scanner scanner;
 
 		Station 종점역 = new Station();
-		종점역.station.offer(new Subway("KTX1"));
-		종점역.station.offer(new Subway("KTX2"));
-		종점역.station.offer(new Subway("새마을호1"));
-		종점역.station.offer(new Subway("새마을호2"));
+		종점역.station.offer(new Subway("KTX1", "정상"));
+		종점역.station.offer(new Subway("KTX2", "정상"));
+		종점역.station.offer(new Subway("새마을호1", "정상"));
+		종점역.station.offer(new Subway("새마을호2", "고장"));
 		Station 용산역 = new Station();
 		Station 서울역 = new Station();
 		Station 구로역 = new Station();
@@ -50,13 +50,16 @@ public class Day15_pr3 {
 				int ch = scanner.nextInt();
 
 				Station_Time time_thread = new Station_Time();
+				Station_status status_thread = new Station_status();
 
 				if (ch == 1) {
 					// 1. 종점역에 열차가 있다면, 종점에서 용산으로 (1에서 2로) 이동시킨다.
 					if (!종점역.station.isEmpty()) {
+						// 1. 상태 출력 
 						if (sw[ch - 1] == true) {
 							time_thread.stop_train(sw[ch - 1]);
-
+							status_thread.status_train(종점역);
+							
 							time_thread.run();
 							용산역.station.offer(종점역.station.poll());
 						} else {
@@ -71,7 +74,6 @@ public class Day15_pr3 {
 					} else {
 						// 1. 아무것도 없으니 지나갑니다..
 						System.out.println("정차중인 열차가 없습니다. ");
-
 					}
 					current_subway(종점역, 용산역, 서울역, 구로역);
 				}
