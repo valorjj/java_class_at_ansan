@@ -24,6 +24,10 @@ public class ComparableExample {
 			Person person = iterator.next();
 			System.out.println(person.name + " - - -  " + person.age);
 		}
+		
+		for(Person person : treeSet) {
+			System.out.println(person.name + " / " + person.age);
+		}
 
 	}
 
