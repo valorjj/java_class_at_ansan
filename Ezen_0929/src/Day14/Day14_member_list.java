@@ -29,6 +29,7 @@ public class Day14_member_list {
 
 			String readStr = new String(bytelist);
 			String[] userCount = readStr.split("\n");
+			String hashTag = userCount[2];
 			for (String s : userCount) {
 
 				String[] userData = s.split(",");
@@ -137,6 +138,10 @@ public class Day14_member_list {
 										outString += outStr;
 
 									}
+									
+									// 모든 회원 내보내기 
+										// 사실상 이어쓰기 하는게 아니라, 덮어쓰기야 
+										// 새롭게 수정된 데이터를 통째로 덮어씌운다. 
 									fos.write(outString.getBytes());
 
 								} catch (Exception e) {
@@ -145,8 +150,29 @@ public class Day14_member_list {
 
 							} else if (ch2 == 3) {
 								System.out.println("[회원 탈퇴]");
-								System.out.println("탈퇴할 아이디 : ");
+								System.out.println("[로그 아웃]");
 								users.remove(temp);
+								
+								try {
+									FileOutputStream fos = new FileOutputStream(
+											"C:/Users/505/git/java_ezen/Ezen_0929/src/Day14/memberList.txt");
+									// 리스트내 모든 회원 저장
+
+									String outString = "";
+									for (User tmp : users) {
+
+										String outStr = tmp.getId() + "," + tmp.getPassword() + "," + tmp.getName()
+												+ "\n";
+										outString += outStr;
+
+									}
+
+									fos.write(outString.getBytes());
+
+								} catch (Exception e) {
+									System.out.println("[에러발생] " + e);
+								}
+								
 
 								break;
 							} else if (ch2 == 4) {
@@ -168,7 +194,9 @@ public class Day14_member_list {
 			}
 
 			else if (ch == 3) {
-				System.out.println("[프로그램 종료]");
+				System.out.println("[회원 정보 삭제]");
+				
+				
 				break;
 			}
 

@@ -14,7 +14,6 @@ public class Day13_5 {
 
 		boolean run = true;
 
-
 		while (run) {
 			System.out.print("1. 음악 재생 | 2. 비디오 재생 : ");
 			int ch = scanner.nextInt();

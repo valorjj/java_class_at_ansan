@@ -14,15 +14,13 @@ public class Board {
 	String date;
 	int count;
 	
-	Board(String title, String writer, String contents){
+	public Board(String title, String writer, String contents){
 		this.title = title;
 		this.writer = writer;
 		this.contents = contents;
 	}
 	
-	Board(){
-		
+	public Board() {
 	}
-		
 
 }
