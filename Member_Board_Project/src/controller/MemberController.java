@@ -1,40 +1,107 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import database.File;
 import model.Member;
 
 public class MemberController {
 
-	// ÇÊµå : ¸ğµç È¸¿øÀ» ´ã°í ÀÖ´Â °´Ã¼
 	public static ArrayList<Member> memberlist = new ArrayList<>();
 
-	public boolean login(String id, String pw) {
+	public static boolean login(String id, String pw) {
 
-		return true;
+		for (Member member : memberlist) {
+			if (member.getId().equals(id) && member.getPassword().equals(pw)) {
+				return true; // ë¡œê·¸ì¸ ì„±ê³µì‹œ true ë¦¬í„´í•˜ê³  ë©”ì†Œë“œ ì¢…ë£Œ
+			}
+
+		}
+
+		return false; // ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ false ë¦¬í„´í•˜ê³  ë©”ì†Œë“œ ì¢…ë£Œ
 	}
 
-	public boolean sigup(Member member) {
+	public static boolean sigup(Member member) {
+
+		// 1. ìœ íš¨ì„± ê²€ì‚¬ :
+
+		if (member.getId().length() < 4) {
+			System.out.println("ì•„ì´ë””ëŠ” 4ê¸€ì ì´ìƒë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+			return false;
+		}
+
+		if (member.getPassword().length() != 4) {
+			System.out.println("ë¹„ë°€ë²ˆí˜¸ëŠ” 4ê¸€ìë§Œ ì…ë‹ˆë‹¤. ");
+			return false;
+		}
+
+		if (member.getName().length() < 2) {
+			System.out.println("ì´ë¦„ì€ 2ê¸€ì ì´ìƒ ê°€ëŠ¥ì…ë‹ˆë‹¤. ");
+			return false;
+
+		}
+		if (!member.getEmail().contains("@")) {
+			System.out.println("ì´ë©”ì¼ì—ëŠ” \"@\" ì´ í¬í•¨ë˜ì•¼í•©ë‹ˆë‹¤. ");
+			return false;
+
+		}
+
+		// 2. ID ì¤‘ë³µ ì²´í¬ :
+
+		for (Member temp : memberlist) {
+			if (temp.getId().equals(member.getId())) {
+				System.out.println("ì•„ì´ë”” ì¤‘ë³µ ");
+				return false;
+			}
+		}
+
+		// 3. ë¦¬ìŠ¤íŠ¸ ì €ì¥
+
+		memberlist.add(member);
+
+		File.filesave(1);
+
+		// 4. íŒŒì¼ ì²˜ë¦¬
 
 		return true;
 
 	}
 
-	// 3. ¾ÆÀÌµğÃ£±â[ÀÌ¸§, ÀÌ¸ŞÀÏ ÀÎ¼ö·Î ¹Ş¾Æ¼­ ÇØ´ç ¸ŞÀÏ¿¡ ¾ÆÀÌµğ Àü¼Û]
-	public boolean forgotid(String name, String email) {
+	public static boolean forgotid(String name, String email) {
 
-		return true;
+		for (Member member : memberlist) {
+			if (member.getName().equals(name) && member.getEmail().equals(email)) {
+				// ë©”ì¼ ë©”ì†Œë“œ í˜¸ì¶œ [ë°›ëŠ”ì‚¬ëŒì´ë©”ì¼, 1(ì•„ì´ë””ì°¾ê¸°), ì°¾ì€ì•„ì´ë””(ì •ë³´)]
+				sendmail(member.getEmail(), 1, member.getId());
+				return true; // ì•„ì´ë””ë¥¼ ì°¾ì•˜ì–´ -> true ë¦¬í„´
+			}
+		}
+
+		return false; // ì•„ì´ë””ë¥¼ ëª» ì°¾ì•˜ì–´ -> false ë¦¬í„´
 
 	}
 
-	// 4. ºñ¹Ğ¹øÈ£Ã£±â [¾ÆÀÌµğ, ÀÌ¸ŞÀÏ ÀÎ¼ö·Î ¹Ş¾Æ¼­ ÇØ´ç ¸ŞÀÏ¿¡ ºñ¹Ğ¹øÈ£ Àü¼Û]
-	public boolean forgotpassword(String id, String pw) {
+	public static boolean forgotpassword(String id, String email) {
+		for (Member member : memberlist) {
+			if (member.getId().equals(id) && member.getEmail().equals(email)) {
+				return true; // ì•„ì´ë””ë¥¼ ì°¾ì•˜ì–´ -> true ë¦¬í„´
+			}
+		}
 
-		return true;
+		return false; // ì•„ì´ë””ë¥¼ ëª» ì°¾ì•˜ì–´ -> false ë¦¬í„´
 
 	}
 
-	// 5. È¸¿øÁ¤º¸[¾ÆÀÌµğ¸¦ ÀÎ¼ö·Î ¹Ş¾Æ ÇØ´ç ¾ÆÀÌµğÀÇ ¸ğµç Á¤º¸ ¹İÈ¯]
 	public Member info(String loginid) {
 
 		Member member = null;
@@ -43,20 +110,69 @@ public class MemberController {
 
 	}
 
-	// 6. È¸¿øÁ¤º¸¼öÁ¤[¾ÆÀÌµğ, ¼öÁ¤Á¤º¸¸¦ ¹Ş¾Æ¼­ ¾÷µ¥ÀÌÆ®¸¦ Ã³¸® ÈÄ ¼º°ø¿©ºÎ ¹İÈ¯]
 	public boolean info(String loginid, Member update_member) {
 
 		return true;
 
 	}
 
-	// 7. È¸¿øÅ»Åğ [ÇØ´ç ¾ÆÀÌµğ »èÁ¦ ÈÄ ¼º°ø ¿©ºÎ ¹İÈ¯]
 	public boolean delete(String loginid) {
 
 		return true;
 	}
 
-	public void logout() {
+	public static void sendmail(String tomail, int type, String contents) {
+
+		// 1. API ë¼ì´ë¸ŒëŸ¬ë¦¬ ë‹¤ìš´ [activation.jar, mail.jar]
+		// 2. í˜„ì¬ í”„ë¡œì íŠ¸ì— ë¼ì´ë¸ŒëŸ¬ë¦¬ ë“±ë¡ [Build Path]
+
+		// 0. ì„¤ì • [ë³´ë‚´ëŠ” ì‚¬ëŒ ID, ë¹„ë°€ë²ˆí˜¸, ë©”ì¼íšŒì‚¬ì˜ í˜¸ìŠ¤íŠ¸]
+
+		String fromemail = "re_mull59@naver.com";
+		String frompassword = "Wjdwls5133!";
+
+		Properties properties = new Properties();
+
+		properties.put("mail.smtp.host", "smtp.naver.com"); // host : í˜¸ìŠ¤íŠ¸ ì£¼ì†Œ
+		properties.put("mail.smtp.host", 587); // port : í˜¸ìŠ¤íŠ¸ì— ì ‘ì†í•˜ëŠ” ë²ˆí˜¸
+		properties.put("mail.smtp.host", true); // auth : íšŒì› ì¸ì¦
+
+		Session session = Session.getDefaultInstance(properties, new Authenticator() {
+
+			// ìµëª… ê°ì²´ ìƒì„±
+			@Override // íŒ¨ìŠ¤ì›Œë“œ ì¸ì¦ ë©”ì†Œë“œ ì˜¤ë²„ë¼ì´ë”©
+			protected PasswordAuthentication getPasswordAuthentication() {
+				// ì¸ì¦í•  ì´ë©”ì¼, ì¸ì¦í•  íŒ¨ìŠ¤ì›Œë“œ
+				return new PasswordAuthentication(fromemail, frompassword);
+			}
+
+		});
+		/////////////////////////////////////////////////////////////////////////////////////////
+
+		MimeMessage message = new MimeMessage(session);
+
+		try {
+			message.setFrom(new InternetAddress(fromemail));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(tomail));
+
+			if (type == 1) {
+				message.setSubject("java console (forgot ID)");
+				message.setText("íšŒì›ë‹˜ì˜ ì•„ì´ë”” : " + contents);
+			}
+			if (type == 2) {
+				message.setSubject("java console (forgot Password)");
+				message.setText("íšŒì›ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ : " + contents);
+			}
+			if (type == 3) {
+				message.setSubject("java console (Member signup)");
+				message.setText("íšŒì›ê°€ì…ì¶•í•˜ " + contents);
+			}
+
+			Transport.send(message);
+
+		} catch (MessagingException e) {
+			System.err.println("[ì•Œë¦¼] ë©”ì¼ ì „ì†¡ ì‹¤íŒ¨ ");
+		}
 
 	}
 
