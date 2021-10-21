@@ -165,13 +165,52 @@
 	
 	super( ) ---> 부모 클래스의 생성자를 호출한다. 
 	
+///////////////////////////////////////////////////////////////////////
+							Member Board 
+///////////////////////////////////////////////////////////////////////
+	1. 패키지 구성 
+		1. 모델링 - 디자인 패턴 
+		2. MVC - Model View Controler
+		
+	1. 패키지 구성
 	
+		* MVC 패턴 : 
+		
+			Model - Item, DB에 저장된 DTO, Data Storage
+			View - Front - HTML/CSS/Javascript
+			Controller - receive, validate input, query, update Views
+			
+			
+	2. 클래스 구성 
 	
+		* Data : file
+		
+		* M : Member, Board, Reply
+		
+		* C : Member Controller, Board Controller, Reply Controller 
+		
+		* V : Application(Initial Menu, Member Menu, Board Menu)
+		
 	
-	
-	
-	
-	
+	3. 클래스 설계 [ 필드, 생성자, 메소드 ] 
+		
+		* Member 
+			필드 : id, password, email, point
+			생성자 : 빈 생성자, 전체 생성자 
+			메소드 : get, set 메소드 
+			
+		* File
+			필드 : filepath
+			메소드 : save, load 메소드 
+			
+		* MemberController
+			필드 : ArrayList<Member> memberlist
+			메소드 : login, signup, forgotid, forgotpassword, logout, info, update, delete
+			
+		* 
+			
+			
+
 	
 	
 	
