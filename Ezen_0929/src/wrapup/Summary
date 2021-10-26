@@ -207,7 +207,18 @@
 			필드 : ArrayList<Member> memberlist
 			메소드 : login, signup, forgotid, forgotpassword, logout, info, update, delete
 			
-		* 
+		* Board
+			필드 : title, contents, writer, date, view, ArrayList<Reply>
+			
+		* Reply
+			필드 : contents, writer, date
+			
+		* BoardController
+			메소드 : add, detail, update, delete
+			
+		* ReplyController
+			메소드 : add
+			
 			
 			
 SMTP : 간이 우편 전송 프로토콜 ( 보낼때 )

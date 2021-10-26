@@ -2,8 +2,13 @@ package view;
 
 import java.util.Scanner;
 
+import controller.BoardController;
 import controller.MemberController;
+import controller.ReplyController;
+import database.File;
+import model.Board;
 import model.Member;
+import model.Reply;
 
 // import 패키지명.클래스명;
 
@@ -12,6 +17,8 @@ public class Application {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
+
+		File.fileroad(1);
 
 		mainmenu();
 
@@ -120,9 +127,119 @@ public class Application {
 
 	public static void membermenu(String id) {
 
+		while (true) {
+
+			try {
+				System.out.println("회원 페이지");
+				System.out.println("1. 회원정보. 2. 커뮤니티 3. 로그아웃");
+				System.out.println("\t 선택 : ");
+				int ch = scanner.nextInt();
+				if (ch == 1) {
+					System.out.println("회원 정보 페이지");
+				}
+				if (ch == 2) {
+
+					boardmenu(id);
+
+				}
+				if (ch == 3) {
+					System.out.println("로그아웃 되었습니다. ");
+					return;
+				}
+
+			} catch (Exception e) {
+				System.err.println("[에러] 관리자 문의 ");
+				scanner = new Scanner(System.in);
+			}
+		}
+
 	}
 
 	public static void boardmenu(String id) {
+
+		while (true) {
+
+			try {
+
+				System.out.println("게시판 페이지");
+				System.out.println("\n번호\t\t타이틀\t작성자\t작성일\t조회수");
+				int i = 1; // for 반복 횟수 => 게시물 번호
+				for (Board board : BoardController.boardlist) {
+
+//					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd");
+//					String date = simpleDateFormat.format(board.getDate());
+					System.out.println(i++ + "\t" + board.getTitle() + "\t\t" + board.getWriter() + "\t"
+							+ board.getDate() + "\t" + board.getView());
+				}
+
+				System.out.println("게시판 페이지");
+				System.out.println("1. 게시물  등록 . 2. 게시물 상세페이지 3. 뒤로가기");
+				System.out.println("\t선택 : ");
+				int ch = scanner.nextInt();
+
+				if (ch == 1) {
+					scanner.nextLine();
+					System.out.println("게시물 등록");
+
+					System.out.println("제목 : ");
+					String title = scanner.nextLine();
+					System.out.println("내용 : ");
+					String contents = scanner.nextLine();
+					BoardController.add(new Board(title, contents, id));
+
+				}
+				if (ch == 2) {
+					System.out.println("게시물 번호 : ");
+					int index = scanner.nextInt();
+					Board board = BoardController.detail(index - 1);
+					if (board == null) {
+						System.out.println("알림 : 게시물 번호가 없습니다. ");
+
+					} else {
+						System.out.println("----------------------------------------------");
+
+						System.out.println("게시물 상세 ");
+						System.out.println("게시물 제목 : " + board.getTitle());
+						System.out.println("게시물 내용 : " + board.getContents());
+						System.out.println("게시물 작성자 : " + board.getWriter());
+						System.out.println("게시물 작성일 : " + board.getDate());
+						System.out.println("게시물 조회수 : " + board.getView());
+						System.out.println("----------------------------------------------");
+						for (Reply reply : board.getReplylist()) {
+							System.out.println("작성자\t댓글내용\t\t작성일");
+						}
+						System.out.println("1. 댓글쓰기 2. 뒤로가기 ");
+						int ch2 = scanner.nextInt();
+						if (ch == 1) {
+							scanner.nextLine();
+							System.out.println("내용 : ");
+							String contents = scanner.nextLine();
+							Reply reply = new Reply(contents, id);
+
+							boolean result = ReplyController.add(index - 1, reply);
+
+							if (result) {
+								System.out.println("댓글 등록 성공 ");
+							} else {
+								System.out.println("댓글 등록 실패");
+							}
+
+						} else if (ch == 2) {
+							return;
+						}
+
+					}
+
+				}
+				if (ch == 3) {
+					return;
+				}
+
+			} catch (Exception e) {
+				System.err.println("[에러] 관리자 문의 ");
+				scanner = new Scanner(System.in);
+			}
+		}
 
 	}
 
