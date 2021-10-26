@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,10 +15,16 @@ import model.Song;
 
 public class Manager extends Main {
 
-	private String filepath_ballad = "D:/jj_ansan_ezen/console_backup/src/file/ballad_lyrics.txt";
-	private String filepath_dance = "D:/jj_ansan_ezen/console_backup/src/file/dance_lyrics.txt";
-	private String filepath_hiphop = "D:/jj_ansan_ezen/console_backup/src/file/hiphop_lyrics.txt";
-	private String filepath_song_list = "D:/jj_ansan_ezen/console_backup/src/file/song_list_info.txt";
+	private String filepath_ballad = "D:\\jj_ansan_ezen\\console_backup\\src\\file\\ballad_lyrics.txt";
+	private String filepath_dance = "D:\\jj_ansan_ezen\\console_backup\\src\\file\\dance_lyrics.txt";
+	private String filepath_hiphop = "D:\\jj_ansan_ezen\\console_backup\\src\\file\\hiphop_lyrics.txt";
+	private String filepath_song_list = "D:\\jj_ansan_ezen\\console_backup\\src\\file\\song_list_info.txt";
+
+//	
+//	File path = new File(".");
+//	String path = Manager.class.getResource("").getPath();
+//	File fileinOtherPackage = new File(path + "ballad_lyrics.txt");
+//	
 
 	// 미리 입력 된 매니저 아이디 / 패스워드
 	private String manager_id = "admin";
@@ -42,6 +49,10 @@ public class Manager extends Main {
 	@Override
 	public void data_input() {
 
+		String path = Manager.class.getResource("").getPath();
+		System.out.println(path);
+		File fileinOtherPackage = new File(path + "ballad_lyrics.txt");
+		System.out.println(fileinOtherPackage);
 		try {
 			scanner = new Scanner(System.in);
 			if (manager_login()) {
@@ -115,7 +126,6 @@ public class Manager extends Main {
 						reader_song_list(); // 데이터가 추가된 txt 파일을 다시 객체로 불러온다.
 						song_list_update(); // 객체를 정렬한다.
 						song_add_ArrayList(song_manager); // 정렬된 객체를 txt 파일로 넘긴다.
-						song_manager.clear();
 
 						////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -131,7 +141,6 @@ public class Manager extends Main {
 							reader_lyrics_ballad();
 							lyrics_list_update_ballad();
 							lyrics_add_ballad_ArrayList(lyrics_list_manager_ballad);
-							lyrics_list_manager_ballad.clear();
 
 						} else if (idx == 2) {
 							// 댄스 가사 저장
@@ -145,7 +154,6 @@ public class Manager extends Main {
 							reader_lyrics_dance();
 							lyrics_list_update_dance();
 							lyrics_add_dance_ArrayList(lyrics_list_manager_dance);
-							lyrics_list_manager_dance.clear();
 
 						} else if (idx == 3) {
 							// 힙합 가사 저장
@@ -159,9 +167,12 @@ public class Manager extends Main {
 							reader_lyrics_dance();
 							lyrics_list_update_hiphop();
 							lyrics_add_hiphop_ArrayList(lyrics_list_manager_hiphop);
-							lyrics_list_manager_hiphop.clear();
 
 						}
+						lyrics_list_manager_ballad.clear();
+						lyrics_list_manager_dance.clear();
+						lyrics_list_manager_hiphop.clear();
+						song_manager.clear();
 
 						/////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -192,7 +203,8 @@ public class Manager extends Main {
 						song_delete(remove_number); // song_manager 리스트에서 해당 원소를 제거시킵니다.
 						song_list_update();
 						song_add_ArrayList(song_manager);
-						song_manager.clear();
+
+						System.out.println("여기는 찍힙니까? ");
 
 						// 가사 삭제
 
@@ -208,21 +220,25 @@ public class Manager extends Main {
 							System.out.println("파일 읽기 2 통과 ");
 							lyrics_add_ballad_ArrayList(lyrics_list_manager_ballad);
 							System.out.println("파일 업데이트 통과 ");
-							lyrics_list_manager_ballad.clear();
 
 						} else if (idx == 2) {
 							// reader_lyrics_dance();
 							lyrics_dance_delete(remove_number);
 							lyrics_list_update_dance();
 							lyrics_add_dance_ArrayList(lyrics_list_manager_dance);
-							lyrics_list_manager_dance.clear();
+
 						} else if (idx == 3) {
 							// reader_lyrics_hiphop();
 							lyrics_hiphop_delete(remove_number);
 							lyrics_list_update_hiphop();
 							lyrics_add_hiphop_ArrayList(lyrics_list_manager_hiphop);
-							lyrics_list_manager_hiphop.clear();
+
 						}
+						lyrics_list_manager_ballad.clear();
+						lyrics_list_manager_dance.clear();
+						lyrics_list_manager_hiphop.clear();
+
+						song_manager.clear();
 
 					}
 
@@ -468,7 +484,7 @@ public class Manager extends Main {
 
 	public void lyrics_add_ballad(String str) throws IOException {
 		FileOutputStream fos;
-		fos = new FileOutputStream(filepath_ballad);
+		fos = new FileOutputStream("D:\\jj_ansan_ezen\\console_backup\\src\\file\\ballad_lyrics.txt");
 		fos.write(str.getBytes());
 		fos.flush();
 		fos.close();
@@ -536,7 +552,7 @@ public class Manager extends Main {
 		for (Lyrics lyric : ballad_list) {
 			str += lyric.getNumber() + "&\n" + lyric.getLyrics() + "\n%\n";
 		}
-		fos_ballad = new FileOutputStream(filepath_ballad);
+		fos_ballad = new FileOutputStream("D:\\jj_ansan_ezen\\console_backup\\src\\file\\ballad_lyrics.txt");
 		fos_ballad.write(str.getBytes());
 		fos_ballad.flush();
 		fos_ballad.close();
@@ -550,7 +566,7 @@ public class Manager extends Main {
 		for (Lyrics lyric : dance_list) {
 			str += lyric.getNumber() + "&\n" + lyric.getLyrics() + "\n%\n";
 		}
-		fos_ballad = new FileOutputStream(filepath_ballad);
+		fos_ballad = new FileOutputStream("D:\\jj_ansan_ezen\\console_backup\\src\\file\\dance_lyrics.txt");
 		fos_ballad.write(str.getBytes());
 		fos_ballad.flush();
 		fos_ballad.close();
@@ -564,7 +580,7 @@ public class Manager extends Main {
 		for (Lyrics lyric : hiphop_list) {
 			str += lyric.getNumber() + "&\n" + lyric.getLyrics() + "\n%\n";
 		}
-		fos_ballad = new FileOutputStream(filepath_ballad);
+		fos_ballad = new FileOutputStream("D:\\jj_ansan_ezen\\console_backup\\src\\file\\hiphop_lyrics.txt");
 		fos_ballad.write(str.getBytes());
 		fos_ballad.flush();
 		fos_ballad.close();
@@ -622,8 +638,6 @@ public class Manager extends Main {
 			} else {
 				System.err.println("[알림] 해당하는 곡이 존재하지 않습니다. ");
 			}
-
 		}
 	}
-
 }

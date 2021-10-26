@@ -148,7 +148,7 @@ public class Thread1 implements Runnable {
 
 		String readStr = new String(bytelist);
 
-		String[] tmplist_sorted_by_song = readStr.split("%\n");
+		String[] tmplist_sorted_by_song = readStr.split("\n%\n");
 		for (String str : tmplist_sorted_by_song) {
 			String[] tmplist_sorted_by_lyric = str.split("&\n");
 			int song_number = Integer.parseInt(tmplist_sorted_by_lyric[0]);
@@ -173,7 +173,7 @@ public class Thread1 implements Runnable {
 
 		String readStr = new String(bytelist);
 
-		String[] tmplist_sorted_by_song = readStr.split("%\n");
+		String[] tmplist_sorted_by_song = readStr.split("\n%\n");
 		for (String str : tmplist_sorted_by_song) {
 			String[] tmplist_sorted_by_lyric = str.split("&\n");
 			int song_number = Integer.parseInt(tmplist_sorted_by_lyric[0]);
@@ -198,7 +198,7 @@ public class Thread1 implements Runnable {
 
 		String readStr = new String(bytelist);
 
-		String[] tmplist_sorted_by_song = readStr.split("%\n");
+		String[] tmplist_sorted_by_song = readStr.split("\n%\n");
 		for (String str : tmplist_sorted_by_song) {
 			String[] tmplist_sorted_by_lyric = str.split("&\n");
 			int song_number = Integer.parseInt(tmplist_sorted_by_lyric[0]);
