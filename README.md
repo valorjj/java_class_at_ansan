@@ -244,3 +244,57 @@ https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html
   * 실행 전 코드에 try{} catch{} 미리 작성 
 * 실행도중 예외 : Null, Index 등 클래스 
   * 실행 후 코드에 문제가 발생할 것 같은 곳에 미리 작성 
+* 예외 던지기 vs try
+  
+
+
+#### Database
+: Table 관리
+
+표 = table
+세로 = 필드 field
+가로 = 레코드 record
+
+* SQL : 데이터베이스 관리 언어 
+* DDL [정의어]
+* DML [조작어]
+   * 삽입 : insert into 테이블명(필드1, 필드2) values(값1, 값2)
+      * 모든 필드 삽입 : insert into 테이블명 values(값, 값2, 값3)
+      * 모든필드 삽입시 : 필드명 생략
+   * 검색 : select 필드명 from 테이블명 where 조건
+      * 모든 필드 검색 : select * from 테이블명 where 조건 
+      * 모든 필드 검색 시 : * (와일드카드)
+
+   * 삭제 : delete
+   * 수정 : update
+
+  * 키워드 :
+    - where : 조건 
+
+* 주요 인터페이스 
+  * Connection : DriverManager.getConnection()
+  * PreparedStatment : 
+  * ResultSet 
+
+* CRUD 
+
+생성, 읽기, 수정, 삭제
+
+* MVC 
+1. Model : 데이터
+2. View : 프론트엔드 HTML, CSS, Scene Builder
+
+삽입 : View -----> Controller -----> Model -----> DB
+조회 : View <----- Controller <----- Model <----- DB
+
+
+* DTO
+  
+데이터 이동 객체 
+
+* DAO
+
+데이터베이스 기능 조작 객체
+
+
+
