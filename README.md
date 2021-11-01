@@ -215,6 +215,13 @@ https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html
 * 추상메소드 : 선언 O, 구현 X
 * 디폴트메소드 : 
 
+##### 인터페이스 VS 상속 
+
+* 인터페이스는 다중구현가능
+* 상속은 단일상속
+* 
+
+
 #### JAVA 메모리 구조 
 
 - Class Area = Method Area
@@ -225,3 +232,15 @@ https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html
 
 메소드 영억 : 클래스 파일의 `바이트 코드`가 로드되는 곳 
 메소드 영역에 저장되는 바이트코드는 프로그램의 흐름을 구성하는 바이트 코드
+
+
+#### 자바 예외 처리
+
+* RuntimeException
+* Checked Exceptions
+* exception : 
+* try { 예외발생 예상되는 코드 } catch(예외클래스 변수명) {}
+* 실행 전 예외 : 입출력, SQL 클래스
+  * 실행 전 코드에 try{} catch{} 미리 작성 
+* 실행도중 예외 : Null, Index 등 클래스 
+  * 실행 후 코드에 문제가 발생할 것 같은 곳에 미리 작성 
