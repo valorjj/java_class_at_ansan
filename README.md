@@ -207,3 +207,21 @@ https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html
 > 프로세스가 실행상태에서 마지막으로 실행한 프로세서의 레지스터 내용을 담고 있다. cpu 에 의해 실행되는 프로세스는 운영체제에 의해 계촉 교체되는데, 교체되었따가 다시 자신의 차례가 되어서 실행될 때 연속적으로 실행된 것 처럼 하기 위해서 이 레지스터 정보를 가지고 있다. 
 
 [(about process) https://bowbowbow.tistory.com/16]
+
+##### 인터페이스는 왜 사용하는가
+
+* 서로 다른 클래스들의 동일한 기능을 수행 목적
+* 상수 : static, final
+* 추상메소드 : 선언 O, 구현 X
+* 디폴트메소드 : 
+
+#### JAVA 메모리 구조 
+
+- Class Area = Method Area
+- Stack Area
+- Heap Area
+- Native Method Stack Area
+- PC Register
+
+메소드 영억 : 클래스 파일의 `바이트 코드`가 로드되는 곳 
+메소드 영역에 저장되는 바이트코드는 프로그램의 흐름을 구성하는 바이트 코드
