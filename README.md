@@ -296,5 +296,11 @@ https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html
 
 데이터베이스 기능 조작 객체
 
+#### SQL
+
+> 업데이트
+
+* "update member set p_point = m_point+? where m_id=?";
+
 
 
